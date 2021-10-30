@@ -57,7 +57,7 @@ async def audio_dl(client, message):
         await msg.delete()
     except: pass
     
-@Client.on_message(filters.command("video", "!"))
+@Client.on_message(filters.command("video", "/"))
 async def video_dl(client, message):
     msg = await message.reply("⏳ __Please wait.__")
     try: INPUT_SOURCE = message.text.split(" ", 1)[1]
