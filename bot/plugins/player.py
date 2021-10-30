@@ -58,7 +58,6 @@ async def play_or_queue(status, data=None):
 @Client.on_message(filters.command("endvc", "!"))
 async def leave_vc(client, message):
     global vc_live
-    if not message.chat.id == CHAT_ID: return
     if not message.from_user.id in ADMINS: return
     await group_call.stop()
     vc_live = False
@@ -68,7 +67,6 @@ async def leave_vc(client, message):
 @Client.on_message(filters.command("live", "!"))
 async def live_vc(client, message):
     global vc_live
-    if not message.chat.id == CHAT_ID: return
     if not message.from_user.id in ADMINS: return
     msg = await message.reply("⏳ __Please wait.__")
     media = message.reply_to_message
@@ -162,7 +160,6 @@ async def play_vc(client, message):
 @Client.on_message(filters.command("stream", "!"))
 async def stream_vc(client, message):
     global vc_live
-    if not message.chat.id == CHAT_ID: return
     msg = await message.reply("⏳ __Please wait.__")
     if vc_live == True:
         return await msg.edit("💬 __Live or Radio Ongoing. Please stop it via `!endvc`.__")
@@ -197,7 +194,6 @@ async def stream_vc(client, message):
 
 @Client.on_message(filters.command("skip", "!"))
 async def skip_vc(client, message):
-    if not message.chat.id == CHAT_ID: return
     if not message.from_user.id in ADMINS: return
     if len(music_queue) == 0: return await message.reply("💬 __Nothing in queue.__")
     if group_call.is_video_running:
